@@ -30,9 +30,12 @@
 		$user_ids[] = $user_data["id"];
 	}
 	
-	$query_update = array(
-		"UPDATE" => "users",
-		"SET" => "pun_subscribe_to_board_pending=1",
-		"WHERE" => "id IN (".implode(",", $user_ids).")"
-	);
-	$forum_db->query_build($query_update);
+	if(count($user_ids) > 0)
+	{
+		$query_update = array(
+			"UPDATE" => "users",
+			"SET" => "pun_subscribe_to_board_pending=1",
+			"WHERE" => "id IN (".implode(",", $user_ids).")"
+		);
+		$forum_db->query_build($query_update);
+	}

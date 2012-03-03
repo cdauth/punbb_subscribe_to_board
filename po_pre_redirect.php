@@ -15,7 +15,7 @@
 				"ON" => "fp.forum_id = ".$cur_posting["id"]." AND fp.group_id = u.group_id"
 			)
 		),
-		"WHERE" => "u.email != '' AND u.pun_subscribe_to_board = 1 AND u.pun_subscribe_to_board_pending != 1 AND u.id > 1 AND u.id != ".$forum_user["id"]." AND ( fp.read_forum IS NULL OR fp.read_forum = 1 ) AND g.g_read_board != 0"
+		"WHERE" => "u.email != '' AND u.subscribe_to_board = 1 AND u.subscribe_to_board_pending != 1 AND u.id > 1 AND u.id != ".$forum_user["id"]." AND ( fp.read_forum IS NULL OR fp.read_forum = 1 ) AND g.g_read_board != 0"
 	);
 	$result = $forum_db->query_build($query);
 	$user_ids = array();
@@ -26,7 +26,7 @@
 		else
 			include($ext_info['path'].'/lang/English.php');
 
-		forum_mail($user_data["email"], '['.$forum_config['o_board_title'].'] '.$lang_pun_subscribe_to_board["New post(s) notification"], sprintf($lang_pun_subscribe_to_board["e-mail text"], $base_url."/search.php?action=show_new"));
+		forum_mail($user_data["email"], '['.$forum_config['o_board_title'].'] '.$lang_subscribe_to_board["New post(s) notification"], sprintf($lang_subscribe_to_board["e-mail text"], $base_url."/search.php?action=show_new"));
 		$user_ids[] = $user_data["id"];
 	}
 	
@@ -34,7 +34,7 @@
 	{
 		$query_update = array(
 			"UPDATE" => "users",
-			"SET" => "pun_subscribe_to_board_pending=1",
+			"SET" => "subscribe_to_board_pending=1",
 			"WHERE" => "id IN (".implode(",", $user_ids).")"
 		);
 		$forum_db->query_build($query_update);

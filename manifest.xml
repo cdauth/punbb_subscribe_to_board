@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <extension engine="1.0">
-	<id>pun_subscribe_to_board</id>
+	<id>subscribe_to_board</id>
 	<title>Subscribe to Board</title>
 	<version>0.1.0</version>
 	<description>Subscribe to the whole board and receive notification e-mails about new posts.</description>
@@ -9,21 +9,21 @@
 	<maxtestedon>1.4.2</maxtestedon>
 	
 	<install><![CDATA[
-		if(!$forum_db->field_exists('users', 'pun_subscribe_to_board'))
-			$forum_db->add_field('users', 'pun_subscribe_to_board', 'INTEGER', false, 0);
-		if(!$forum_db->field_exists('users', 'pun_subscribe_to_board_pending'))
-			$forum_db->add_field('users', 'pun_subscribe_to_board_pending', 'INTEGER', false, 0);
+		if(!$forum_db->field_exists('users', 'subscribe_to_board'))
+			$forum_db->add_field('users', 'subscribe_to_board', 'INTEGER', false, 0);
+		if(!$forum_db->field_exists('users', 'subscribe_to_board_pending'))
+			$forum_db->add_field('users', 'subscribe_to_board_pending', 'INTEGER', false, 0);
 	]]></install>
 	<uninstall><![CDATA[
-		$forum_db->drop_field('users', 'pun_subscribe_to_board');
-		$forum_db->drop_field('users', 'pun_subscribe_to_board_pending');
+		$forum_db->drop_field('users', 'subscribe_to_board');
+		$forum_db->drop_field('users', 'subscribe_to_board_pending');
 	]]></uninstall>
 	<hooks>
 		<hook id="pf_change_details_settings_new_subscription_option"><![CDATA[
 			require($ext_info['path']."/pf_change_details_settings_new_subscription_option.php");
 		]]></hook>
 		<hook id="pf_change_details_settings_validation"><![CDATA[
-			$form += extract_elements(array('pun_subscribe_to_board'));
+			$form += extract_elements(array('subscribe_to_board'));
 		]]></hook>
 		<hook id="po_pre_redirect"><![CDATA[
 			require($ext_info['path']."/po_pre_redirect.php");

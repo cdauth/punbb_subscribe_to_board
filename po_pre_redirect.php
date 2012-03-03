@@ -15,7 +15,7 @@
 				"ON" => "fp.forum_id = ".$cur_posting["id"]." AND fp.group_id = u.group_id"
 			)
 		),
-		"WHERE" => "u.email != '' AND u.pun_subscribe_to_board = 1 AND u.pun_subscribe_to_board_pending != 1 AND u.id > 1 AND ( fp.read_forum IS NULL OR fp.read_forum = 1 ) AND g.g_read_board != 0"
+		"WHERE" => "u.email != '' AND u.pun_subscribe_to_board = 1 AND u.pun_subscribe_to_board_pending != 1 AND u.id > 1 AND u.id != ".$forum_user["id"]." AND ( fp.read_forum IS NULL OR fp.read_forum = 1 ) AND g.g_read_board != 0"
 	);
 	$result = $forum_db->query_build($query);
 	$user_ids = array();

@@ -26,7 +26,7 @@
 		else
 			include($ext_info['path'].'/lang/English.php');
 
-		forum_mail($user_data["email"], $lang_pun_subscribe_to_board["New post(s) notification"], sprintf($lang_pun_subscribe_to_board["e-mail text"], $base_url."/search.php?action=show_new"));
+		forum_mail($user_data["email"], '['.$forum_config['o_board_title'].'] '.$lang_pun_subscribe_to_board["New post(s) notification"], sprintf($lang_pun_subscribe_to_board["e-mail text"], $base_url."/search.php?action=show_new"));
 		$user_ids[] = $user_data["id"];
 	}
 	

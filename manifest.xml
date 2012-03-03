@@ -24,6 +24,8 @@
 		]]></hook>
 		<hook id="pf_change_details_settings_validation"><![CDATA[
 			$form += extract_elements(array('subscribe_to_board'));
+			if(!isset($form['subscribe_to_board']) || $form['subscribe_to_board'] != '1')
+				$form['subscribe_to_board'] = '0';
 		]]></hook>
 		<hook id="po_pre_redirect"><![CDATA[
 			require($ext_info['path']."/po_pre_redirect.php");
